@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  register-app:
+    container_name: register-app
+    image: docker.io/rohitrawat891997/register-app:latest
+    ports:
+      - "8081:8080"
+    networks:
+      - twotier
+
+networks:
+  twotier:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.10.0/24
