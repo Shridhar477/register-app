@@ -1,0 +1,24 @@
+---
+name: install tomcat server
+hosts: all
+become: true
+
+tasks:
+- name: install java
+  ansible.builtin.yum:
+    name: java
+    state: latest
+
+- name: download tomcat
+  ansible.builtin.get_url:
+    url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.46/bin/apache-tomcat-10.1.46.tar.gz
+    dest: /usr/local
+
+- name: extract package
+  ansible.builtin.unarchive:
+    src: /usr/local/apache-tomcat-10.1.46.tar.gz
+    dest: /opt
+    remote_src: yes
+
+- name: start tomcat service
+  shell: /opt/apache-tomcat-10.1.46.tar.gz/bin/startup.sh 
