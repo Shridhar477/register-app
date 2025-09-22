@@ -12,11 +12,6 @@
     tomcat_home: "/opt/apache-tomcat-{{ tomcat_version }}"
 
   tasks:
-    - name: Install Java
-      ansible.builtin.yum:
-        name: java
-        state: latest
-
     - name: Download Tomcat
       ansible.builtin.get_url:
         url: "{{ download_url }}"
